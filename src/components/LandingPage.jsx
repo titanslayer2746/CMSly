@@ -21,10 +21,10 @@ const LandingPage = () => {
               variant={"default"}
               className="bg-gray-200 w-28 hover:cursor-pointer delay-100"
             >
-              <Link href={"/blogs"}>try it out</Link>
+              <Link href={"/sign-in"}>Try it out!</Link>
             </Button>
             <Button variant={"outline"} className="w-28 hover:cursor-pointer">
-              try it out
+              Try it out!
             </Button>
           </div>
         </div>

@@ -2,6 +2,9 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import Navbar from "@/components/navbar";
+import AuthProviders from "@/components/providers/AuthProviders";
+import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,13 +20,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
       <body className={`${poppins.className} antialiased`}>
-        <SidebarProvider>
-          <AppSidebar />
-          <main className="w-full">
-            <SidebarTrigger />
-            {children}
-          </main>
-        </SidebarProvider>
+        <AuthProviders>
+          <SidebarProvider>
+            <AppSidebar />
+            <main className="w-full">
+              <SidebarTrigger />
+              <Navbar />
+              {children}
+              <Toaster className="text-red-500" />
+            </main>
+          </SidebarProvider>
+        </AuthProviders>
       </body>
     </html>
   );

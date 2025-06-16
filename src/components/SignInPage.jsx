@@ -3,6 +3,7 @@ import { Crosshair } from "lucide-react";
 import Google from "./logo/Google";
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";
+import { useState } from "react";
 
 const SignInPage = () => {
   const [loading, setLoading] = useState(false);

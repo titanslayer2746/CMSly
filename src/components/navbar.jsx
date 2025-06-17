@@ -8,9 +8,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
+import { getAuthSession } from "@/lib/auth";
 const Navbar = () => {
-  const auth = true;
+  const session = getAuthSession();
+  console.log(session);
   const tempUser = { name: "john", username: "john_123" };
   return (
     <div className="flex justify-between px-8 h-12 w-full">
@@ -21,10 +22,10 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {auth ? (
-        <UserModalComponent user={tempUser} />
+      {session.user ? (
+        <UserModalComponent user={session?.user} />
       ) : (
-        <Link href={"/sign-in"}></Link>
+        <Link href={"/sign-in"}>Sign in</Link>
       )}
     </div>
   );
@@ -34,7 +35,7 @@ export default Navbar;
 const UserModalComponent = ({ user }) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>user</DropdownMenuTrigger>
+      {/* <DropdownMenuTrigger>user</DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Hi {user.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -44,7 +45,8 @@ const UserModalComponent = ({ user }) => {
         <DropdownMenuItem>Billing</DropdownMenuItem>
         <DropdownMenuItem>Team</DropdownMenuItem>
         <DropdownMenuItem>Subscription</DropdownMenuItem>
-      </DropdownMenuContent>
+      </DropdownMenuContent> */}
+      hi
     </DropdownMenu>
   );
 };

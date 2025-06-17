@@ -1,6 +1,7 @@
 import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "@/lib/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { getServerSession } from "next-auth";
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
@@ -18,7 +19,7 @@ export const authOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        const dbUser = prisma.user.findUnique({
+        const dbUser = await prisma.user.findUnique({
           where: { email: user.email },
           select: {
             id: true,
@@ -65,3 +66,5 @@ export const authOptions = {
     },
   },
 };
+
+export const getAuthSession = () => getServerSession(authOptions);

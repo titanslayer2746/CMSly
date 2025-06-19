@@ -10,7 +10,7 @@ const SignInPage = () => {
   const onSignin = async () => {
     try {
       setLoading(true);
-      await signIn("google");
+      await signIn("google", { callbackUrl: "/dashboard" });
     } catch (error) {
       console.error(error.message);
       toast("Failed to sign in");

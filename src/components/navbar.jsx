@@ -9,8 +9,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { getAuthSession } from "@/lib/auth";
-const Navbar = () => {
-  const session = getAuthSession();
+import Image from "next/image";
+import Signout from "./Signout";
+export default async function Navbar() {
+  const session = await getAuthSession();
+
   console.log(session);
   const tempUser = { name: "john", username: "john_123" };
   return (
@@ -22,31 +25,37 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {session.user ? (
+      {session ? (
         <UserModalComponent user={session?.user} />
       ) : (
         <Link href={"/sign-in"}>Sign in</Link>
       )}
     </div>
   );
-};
-export default Navbar;
+}
 
 const UserModalComponent = ({ user }) => {
   return (
     <DropdownMenu>
-      {/* <DropdownMenuTrigger>user</DropdownMenuTrigger>
+      <DropdownMenuTrigger>
+        <Image
+          className="rounded-full border-2 border-[greenyellow]"
+          src={user.image}
+          alt="user avatar"
+          width={40}
+          height={40}
+        />
+      </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Hi {user.name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <Link href={`/profile/${user.username}`}>Go to profile</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
-      </DropdownMenuContent> */}
-      hi
+        <DropdownMenuItem>
+          <Signout />
+        </DropdownMenuItem>
+      </DropdownMenuContent>
     </DropdownMenu>
   );
 };

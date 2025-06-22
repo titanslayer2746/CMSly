@@ -6,7 +6,7 @@ export default function Signout() {
   return (
     <div
       onClick={() => signOut({ callbackurl: "/sign-in" })}
-      className="flex items-center gap-2"
+      className="flex items-center gap-2 cursor-pointer"
     >
       <LogOut className="w-4" /> Log out!
     </div>

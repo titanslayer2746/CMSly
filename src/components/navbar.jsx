@@ -14,8 +14,6 @@ import Signout from "./Signout";
 export default async function Navbar() {
   const session = await getAuthSession();
 
-  console.log(session);
-  const tempUser = { name: "john", username: "john_123" };
   return (
     <div className="flex justify-between px-8 h-12 w-full">
       <div>
@@ -39,7 +37,7 @@ const UserModalComponent = ({ user }) => {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Image
-          className="rounded-full border-2 border-[greenyellow]"
+          className="rounded-full border-2 border-[greenyellow] cursor-pointer"
           src={user.image}
           alt="user avatar"
           width={40}
